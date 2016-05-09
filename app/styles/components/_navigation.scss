@@ -1,9 +1,12 @@
-.top-bar, .top-bar .menu{
+.top-bar, .top-bar .menu {
   background-color: $nav-background;
 }
 
 .top-bar {
-  .menu-text{
+  .menu-text {
     color: $nav-foreground;
+  }
+  .active-link {
+    font-weight: bold;
   }
 }
