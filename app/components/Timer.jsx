@@ -20,6 +20,7 @@ module.exports = React.createClass({
           this.timer = undefined;
           break;
         case "stopped":
+          clearInterval(this.timer);
           this.setState({
             count: 0
           })
