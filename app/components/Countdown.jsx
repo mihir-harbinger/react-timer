@@ -39,6 +39,10 @@ module.exports = React.createClass({
       }
     }
   },
+  componentWillUnmount: function(){
+    clearInterval(this.timer);
+    this.timer = undefined;
+  },
   render: function(){
     var {count, countdownStatus} = this.state;
 
@@ -50,6 +54,7 @@ module.exports = React.createClass({
     }
     return(
       <div>
+        <h1 className="page-title text-center">Countdown</h1>
         <Clock totalSeconds={count} />
         {renderControlArea()}
       </div>
@@ -59,14 +64,20 @@ module.exports = React.createClass({
     this.setState({
       count: seconds,
       countdownStatus: 'started'
-    })
+    });
   },
   startTimer: function(){
     this.timer = setInterval(() =>{
       var newCount = this.state.count - 1;
+      console.log(newCount);
       this.setState({
         count: newCount >= 0 ? newCount : 0
       });
+      if(newCount === 0){
+        this.setState({
+          countdownStatus: 'stopped'
+        });
+      }
     }, 1000);
   },
   handleStatusChange: function(newStatus){
